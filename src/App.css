@@ -1,38 +1,289 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  color: white;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+:root {
+  --shadow-height: 6px;
+}
+body {
+  background: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+
+  font-family: "Barlow Semi Condensed", sans-serif;
+}
+body,
+html {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+.rectangle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 35rem;
+  height: 5rem;
+  border: 2px solid hsl(217, 16%, 45%);
+  border-radius: 10px;
+  padding: 1rem;
+}
+p {
+  margin: 0;
+}
+.wordsContainer {
+  line-height: 1.5rem;
+  font-size: 1.7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.scoreContainer {
+  color: hsl(229, 25%, 31%);
+  width: 19%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+
+  line-height: 3rem;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: 3rem;
+  border-radius: 7px;
+  font-weight: bold;
+}
+.scoreContainer p {
+  line-height: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  font-size: 0.85rem;
+  color: hsl(229, 64%, 46%);
+}
+.rules-button {
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 0.5rem;
+  user-select: none;
+  cursor: pointer;
+  border: 1px solid white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.5rem;
+  width: 8rem;
+  border-radius: 7px;
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  transition: 0.1s;
+}
+.rules-button:hover {
+  transform: scale(1.1);
+}
+.game-board {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+.selections {
+  position: relative;
+}
+.circle {
+  user-select: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  position: absolute;
+  width: 150px; /* Ajusta el tamaño de los círculos según tus necesidades */
+  height: 150px; /* Ajusta el tamaño de los círculos según tus necesidades */
+  border-radius: 50%;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.15s;
+}
+.circle-result {
+  position: relative;
+
+  position: static;
 }
 
-.App-link {
-  color: #61dafb;
+.triangle {
+  width: 220px;
+  object-fit: contain;
+}
+.circle-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px var(--shadow-height) 0px rgba(0, 0, 0, 0.2) inset;
+
+  border-radius: 50%;
+  background-color: white;
+  width: calc(100% - 32px);
+  height: calc(100% - 32px);
+}
+.circle-1 {
+  background: linear-gradient(hsl(230, 89%, 62%), hsl(230, 84%, 63%));
+  box-shadow: 0px var(--shadow-height) 0px #2947c1; /* Updated shadow color */
+  top: -75px; /* Adjust the vertical position of the circle as needed */
+  left: 10%; /* Adjust the horizontal position of the circle as needed */
+  transform: translate(-50%, 0);
+}
+.circle-1:hover {
+  transform: translate(-50%, 0) scale(1.1); /* New transform for hover */
+}
+.circle-2 {
+  background: linear-gradient(hsl(39, 89%, 49%), hsl(40, 74%, 64%));
+  box-shadow: 0px var(--shadow-height) 0px rgba(198, 108, 30, 255);
+  top: -75px; /* Ajusta la posición vertical del círculo según tus necesidades */
+  right: 0;
+  transform: translateX(50%);
+}
+.circle-2:hover {
+  transform: translateX(50%) scale(1.1); /* New transform for hover */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.circle-3 {
+  background: linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
+  box-shadow: 0px var(--shadow-height) 0px #9d1733;
+  bottom: -75px; /* Ajusta la posición vertical del círculo según tus necesidades */
+  right: 50%;
+  transform: translateX(50%);
+}
+.circle-3:hover {
+  transform: translateX(50%) scale(1.1); /* New transform for hover */
+}
+.rules-view {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.rules-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.rules-tittle {
+  color: hsl(229, 25%, 31%);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.8rem;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0
+  ); /* Color del overlay, ajusta la opacidad según tus preferencias */
+  z-index: 2; /* Colócalo por encima de otros elementos */
+  display: none; /* Inicialmente oculto */
+}
+.close-icon {
+  width: 1.5xrem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+.rules-image {
+  display: block;
+  margin-top: 40px;
+  max-width: 100%;
+  height: auto;
+}
+
+.result-container .circle {
+  transform: scale(1.4);
+}
+.result-container {
+  width: 32rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.circle-text {
+  position: absolute;
+  top: -40px; /* Ajusta esto según tu diseño */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.9rem;
+  letter-spacing: 0.15rem;
+  color: white; /* Ajusta el color según tu diseño */
+  width: max-content;
+}
+.mirror-image {
+  transform: scaleX(-1);
+}
+.radial-win {
+  transition: 1s;
+  opacity: 0;
+  border-radius: 50%;
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  z-index: -1;
+  background: radial-gradient(
+    rgba(255, 255, 255, 0.1) 0% 43%,
+    rgba(255, 255, 255, 0.05) 43% 58%,
+    rgba(255, 255, 255, 0.02) 56% 100%
+  );
+}
+.retry-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  visibility: hidden;
+  display: flex;
+  opacity: 0;
+  transition: 1s;
+  flex-direction: column;
+}
+
+.retry-box p {
+  text-align: center;
+  width: 100%;
+  font-weight: 700;
+  font-size: 3.5rem;
+}
+.retry-box button {
+  user-select: none;
+  cursor: pointer;
+  margin-top: 1rem;
+  height: 3rem;
+  font-size: 1rem;
+  width: 12rem;
+  border: none;
+  background-color: white;
+  color: hsl(349, 70%, 56%);
+  font-weight: 700;
+  border-radius: 7px;
 }
